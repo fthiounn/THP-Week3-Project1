@@ -10,14 +10,15 @@
 
 class CalendarDisplayer
 	COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-	@chosen_month = Time.now.month
-	@chosen_year = 2019
+	
 	def initialize
+		@chosen_month = Time.now.month
+		@chosen_year = 2019
 		display_loop
 	end
 	def display_loop
-		user_entry = print_calendar(Time.now.month)
-		while (user_entry >1 || user_entry <0) do
+		user_entry = print_calendar(@chosen_year, @chosen_month)
+		while (user_entry >2 || user_entry <0) do
 			puts "Enter 1 for last month, 2 for next month, 0 to exit"
 			user_entry = gets.to_i
 		end
@@ -32,7 +33,7 @@ class CalendarDisplayer
 			display_loop
 			return
 		when 2
-			@chosen_year+=1 if @chosen_month == 12
+			@chosen_year +=1 if @chosen_month == 12
 			@chosen_month+=1
 			@chosen_month = 1 if @chosen_month == 13
 			display_loop
@@ -50,7 +51,7 @@ class CalendarDisplayer
 		system "clear"
 		@day_counter = 1
 		@nb_days = days_in_month(month , year)
-		puts "#{chosen_month} #{chosen_year}"
+		puts "#{Date::MONTHNAMES[month]} #{@chosen_year}"
 		for n in 0..(@nb_days-1) do
 			if (n%6 == 0) then #lignes 0-6-12-18-24-30
 				line_1
@@ -67,7 +68,7 @@ class CalendarDisplayer
 				@day_counter+=7
 			end
 		end
-		puts "Enter 1 for next month, 0 for last month"
+		puts "Enter 1 for last month, 2 for next month, 0 to exit"
 		return gets.to_i
 	end
 	private
@@ -97,7 +98,7 @@ class CalendarDisplayer
 		day_counter_loop = @day_counter	
 		7.times do
 			if day_counter_loop <= @nb_days 
-				table_event = Event.get_daily_events(Time.new(year, 10, day_counter_loop))
+				table_event = Event.get_daily_events(Time.new(year, month, day_counter_loop))
 				if(table_event.size == 0) then
 					print "|         "
 				elsif table_event.size == 1
@@ -118,7 +119,7 @@ class CalendarDisplayer
 		day_counter_loop = @day_counter	
 		7.times do
 			if day_counter_loop <= @nb_days 
-				table_event = Event.get_daily_events(Time.new(year, 10, day_counter_loop))
+				table_event = Event.get_daily_events(Time.new(year, month, day_counter_loop))
 				if(table_event.size == 0) then
 					print "|         "
 				elsif table_event.size == 1 && !table_event[0].title.split(" ").at(0).nil?
@@ -144,7 +145,7 @@ class CalendarDisplayer
 		day_counter_loop = @day_counter	
 		7.times do
 			if day_counter_loop <= @nb_days 
-				table_event = Event.get_daily_events(Time.new(year, 10, day_counter_loop))
+				table_event = Event.get_daily_events(Time.new(year, month, day_counter_loop))
 				if(table_event.size == 0) then
 					print "|         "
 				elsif table_event.size == 1 && !table_event[0].title.split(" ").at(1).nil?
@@ -170,7 +171,7 @@ class CalendarDisplayer
 		day_counter_loop = @day_counter	
 		7.times do
 			if day_counter_loop <= @nb_days 
-				table_event = Event.get_daily_events(Time.new(year, 10, day_counter_loop))
+				table_event = Event.get_daily_events(Time.new(year, month, day_counter_loop))
 				if(table_event.size == 0) then
 					print "|         "
 				elsif table_event.size == 1 && !table_event[0].title.split(" ").at(2).nil?

@@ -20,7 +20,6 @@ class Event
 	#constructor
 	def initialize(start_date,duration,title,attendees)
 		@attendees = []
-		puts title
 		@start_date = Time.parse(start_date)
 		@duration = duration.to_i
 		@title = title
