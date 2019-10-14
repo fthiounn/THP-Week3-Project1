@@ -1,7 +1,4 @@
 #gems
-require 'colorize'
-require 'open-uri'
-require 'ruby2d'
 require 'time'
 
 #files
