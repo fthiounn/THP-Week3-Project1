@@ -14,16 +14,18 @@
 # this class handles the Events of our calendar, each instance is a User
 
 class Event
-
+	@@all_events = []
 	attr_accessor :start_date, :duration, :title, :attendees
 
 	#constructor
 	def initialize(start_date,duration,title,attendees)
 		@attendees = []
+		puts title
 		@start_date = Time.parse(start_date)
 		@duration = duration.to_i
 		@title = title
 		@attendees = attendees
+		@@all_events << self
 	end
 	#decale l'evenement de 24h
 	def postpone_24h
@@ -57,6 +59,14 @@ class Event
 		end
 		puts
 	end
+	#check is there is an event on that date. returns nil if not, the number of events if yes
+	def self.get_monthly_events (month)
+		return @@all_events.select {|event| event.start_date.strftime("%B") == month}
+	end
+	def self.get_daily_events (date)
+		return @@all_events.select {|event| event.start_date.to_date === date.to_date}
+	end
+	
 end
 
 

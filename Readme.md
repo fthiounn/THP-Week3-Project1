@@ -11,8 +11,3 @@ Aujourd'hui tu vas révolutionner le monde de la tech puisque tu vas créer un n
 
 Tu vas coder une application où tu pourras créer des événements avec une date de début, une durée, et un nom. Tu pourras leur rattacher un lieu, des utilisateurs (qui y assisteront), et on affichera la liste totale des rendez-vous. L'avantage de penser "objet" pour ce genre d'application devrait assez vite te sauter aux yeux : sa décomposition sera extrêmement simple.
 
-Dev choices :
-
-UI
-	- We will try to make a better interface than the ASCII one
-		-gem ruby2d 
