@@ -41,7 +41,7 @@ class Calendar
 		puts "1. Add an event"
 		puts "2. Display the Calendar"
 		puts "0. Quit"
-		puts "> "
+		print "> "
 	end
 	#Gets and check the user input for the menu
 	def get_user_menu_input
