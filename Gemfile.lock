@@ -37,6 +37,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.10.1)
+    ruby2d (0.9.2)
     unicode-display_width (1.6.0)
 
 PLATFORMS
@@ -47,6 +48,7 @@ DEPENDENCIES
   pry
   rspec
   rubocop (~> 0.57.2)
+  ruby2d
 
 RUBY VERSION
    ruby 2.5.1p57
